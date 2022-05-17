@@ -19,4 +19,4 @@ jobs:
           # with permissions to create releases in the other repo
           token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
         env:
-          GITHUB_REPOSITORY: my_gh_org/my_gh_repo
+          GITHUB_REPOSITORY: GiganteTGames/githubactions-exemple
