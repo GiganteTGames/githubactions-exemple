@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Release note 
+      - name: Checkout 
         uses: actions/checkout@v2
 
       - name: Build
@@ -20,20 +20,9 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: Release.txt
-          
-      - name: Checkout Changelog
-        uses: actions/checkout@v2
 
       - name: Generate Changelog
         run: echo "# Good things have arrived"  -CHANGELOG.txt
       
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          body_path: ${{ github.workspace }}-CHANGELOG.txt
-          # note you'll typically need to create a personal access token
-          # with permissions to create releases in the other repo
-          token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
-        env:
-          GITHUB_REPOSITORY: GiganteTGames/githubactions-exemple
+      - name: Run Changelog CI
+        uses: saadmk11/changelog-ci@v1.0.0
